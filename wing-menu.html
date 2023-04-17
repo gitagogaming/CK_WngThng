@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        loadFlavors();
+      });
+    </script>
+    <title>The Flavor Selector</title>
+    <meta charset="UTF-8" />
+    
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+            body {
+                font-family: 'Roboto', sans-serif;;
+                margin: 0;
+                padding: 0;
+              }
+        
+
+    
+
+    
+          #content {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-top: 65px;
+            padding: 10px;
+            background-color: rgb(190, 190, 190);
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+          }
+    
+          label {
+            font-size: 1.2rem;
+            font-weight: bold;
+          }
+    
+          select {
+            width: 175px;
+            height: 25px;
+            margin-bottom: 10px;
+          }
+    
+          input[type="text"] {
+            width: 150px;
+            height: 25px;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+          }
+    
+          #wing-names {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 900px;
+            max-height: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* add overflow property */
+            font-family: 'Open Sans', sans-serif;
+          }
+    
+          #wing-names > div {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            
+          }
+    
+          #wing-names > div:hover {
+            background-color: #e6e6e6;
+            border: 1px solid #a6a8a4;
+
+          }
+          #tags-dropdown, #search-box {
+            height: 30px;
+            width: 250px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 10px;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+          }
+
+
+
+          #random-flavor {
+            height: 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 10px;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: #b52f2f;
+            color: white;
+            cursor: pointer;
+          }
+
+        /* Style for recommended text */
+
+         .flavor-container {
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+         }
+
+         .flavor-container .flavor {
+           flex: 1;
+         }
+
+         .flavor-container .recommended {
+           flex: 0 0 auto;
+           font-style: italic;
+           color: rgb(210, 255, 9);
+           font-size: 0.8em;
+           margin-left: 10px;
+           margin-right: 10px;
+           border: 1px solid #90EE90;
+           border-radius: 10px;
+           padding: 3px;
+           padding-right: 10px;
+           padding-left: 10px;
+           background-color: #070707;
+      }
+
+
+      
+        #wing-cost {
+          position: relative;
+          background-color: #ffdd57;
+          padding: 2px;
+          border-radius: 0 0 5px 5px;
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+    }
+        </style>
+  </head>
+
+
+
+
+
+  <body> 
+    <script src="js/script.js"></script>
+    <div id="content">
+      <h2>Wing Flavor Finder</h2>
+      <label for="tags">Flavor Category:</label>
+      <br />
+      <select id="tags" onchange="showFlavors()">
+        <option value="all">All</option>
+      </select>
+      <br />
+      <br />
+      <label for="search-box">Search:</label>
+      <br />
+      <input type="text" id="search-box" onkeyup="showFlavors()" />
+      <button id="random-flavor" onclick="randomFlavor()">Random Flavor</button>
+
+      <br />
+      <br />
+      <div id="wing-names"></div>
+      <div id="wing-cost">
+        <p>6 Wings: $7.00 | 12 Wings: $14.00</p>
+        <p>* Flavor will have extra cost associated</p>
+      </div>
+    </div>
+  </body>
+</html>

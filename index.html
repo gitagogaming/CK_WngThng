@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CK's Wings -n- Things</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+            background-color: #f1f1f1;
+		}
+
+		.header {
+			background-image: url("CKs_BestPlace.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			max-width: 1000px;
+			height: 200px;
+			position: relative;
+			margin: 0 auto;
+       
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+
+		.menu {
+			background-color: rgb(190, 190, 190);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px 0;
+            border-radius: 7px;
+		}
+        .menu-content{
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #fff;
+            width: 100%;
+            max-height: 600px;
+            overflow-y: auto;
+            z-index: 9999;
+          }
+          
+.menu-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+		
+		.menu ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.menu ul li {
+			margin-right: 20px;
+			position: relative;
+		}
+
+		.menu ul li a {
+			color: #131313;
+			text-decoration: none;
+			padding: 10px;
+			transition: all 0.3s ease-in-out;
+            font-weight: bold;
+		}
+
+		.menu ul ul {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: rgb(190, 190, 190);
+			padding: 0;
+			margin-top: 5px;
+			min-width: 150px;
+		}
+
+		.menu ul ul li {
+			position: relative;
+			margin-right: 0;
+			float: none;
+		}
+
+		.menu ul ul li a {
+			padding: 10px;
+			color: #0a0a0a;
+			display: block;
+			text-align: left;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.menu ul li:hover > a {
+			background-color: #a3a3a3;
+		}
+
+		.menu ul li:hover > ul {
+			display: inherit;
+		}
+
+		.menu ul ul li:hover > a {
+			background-color: #a7383894;
+		}
+
+		#logo {
+			position: absolute;
+			top: 10px;
+			left: 80px;
+			height: 200px;
+			 }
+	</style>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+		  loadFlavors();
+		});
+		
+	  </script>
+</head>
+<body>
+	<script src="js/script.js"></script>
+	<img src="http://nebula.wsimg.com/03b5a0c4bfd795f4732e04a0d5b17426?AccessKeyId=3B4992FE0EDE2F4BDD85&disposition=0&alloworigin=1" alt="Logo" id="logo">
+
+	<div class="header"></div>
+	<div class="container">
+		<div class="menu">
+       
+                <nav>
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li>
+                      <a href="#">Menu</a>
+                      <ul class="submenu">
+                        <li><a href="#">Daily Specials</a></li>
+                        <li><a href="#">Wings</a></li>
+                        <li><a href="#">Sandwiches</a></li>
+                        <li><a href="#">More Sandwiches</a></li>
+                        <li><a href="#">Speciality Sandwiches</a></li>
+                        <li><a href="#">Cheesesteaks & More</a></li>
+                        <li><a href="#">Burgers</a></li>
+                        <li><a href="#">Hot Dogs</a></li>
+                        <li><a href="#">Appetizers</a></li>
+                        <li><a href="#">Fries</a></li>
+                        <li><a href="#">BBQ</a></li>
+                        <li><a href="#">Ethnic Food</a></li>
+                        <li><a href="#">Seafood</a></li>
+                        <li><a href="#">Soup & Salad</a></li>
+                        <li><a href="#">Pizza</a></li>
+                        <li><a href="#">Stromboli</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Kid's Menu</a></li>
+                      </ul>
+                    </li>
+                    <li id="wing-menu"><a href="#">Wing Menu</a></li>
+                  </ul>
+                </nav>
+
+              </div>
+		</div>
+	</div>
+	<div class="menu-container">
+		<div id="menu-content">
+		</div>
+	</div>
+
+    <script>
+        // Define a function to load the contents of the wing-menu.html file
+		function loadWingMenu(callback) {
+			// Create a new XMLHttpRequest object
+			var xhr = new XMLHttpRequest();
+		  
+			// Define a function to handle the response from the server
+			xhr.onreadystatechange = function() {
+			  if (xhr.readyState === XMLHttpRequest.DONE) {
+				if (xhr.status === 200) {
+				  // If the request was successful, add the response to the content div
+				  document.getElementById("menu-content").innerHTML = xhr.responseText;
+		  
+				  // Call the callback function, passing in the content element as a parameter
+				  callback(document.getElementById("menu-content"));
+				} else {
+				  // If the request was not successful, log an error message to the console
+				  console.log("Error loading Wing Menu: " + xhr.status);
+				}
+			  }
+			};
+		  
+			// Send a GET request to the wing-menu.html file
+			xhr.open("GET", "wing-menu.html", true);
+			xhr.send();
+		  }
+		  
+        
+      
+        // Add a click event listener to the Wing Menu li element
+        document.getElementById("wing-menu").addEventListener("click", function() {
+			loadWingMenu(function(content) {
+			  // Load the script.js file
+			  var script = document.createElement("script");
+			  script.src = "script.js";
+			  content.appendChild(script);
+		  
+			  // Call loadFlavors()
+			  loadFlavors();
+			});
+		  });
+      </script>
+      
+</body>
+</html>
