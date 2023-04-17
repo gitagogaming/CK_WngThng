@@ -69,11 +69,15 @@
           }
     
           #wing-names > div {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+              font-size: 14px;
+              font-weight:bold;
+              margin-bottom: 10px;
+              padding-top: 4px;
+              padding-bottom: 0;
+              padding-left:10px;
+              border-radius: 5px;
+              box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            
             
           }
 
@@ -113,28 +117,37 @@
          .flavor-container {
            display: flex;
            flex-direction: row;
+           justify-content: space-between;
            align-items: center;
          }
 
-         .flavor-container .flavor {
-           flex: 1;
-         }
+         .flavor {
+          display: flex;
+          justify-content: flex-start;
+          width: 100%;
+        }
+
+         .flavor-text {
+          flex-grow: 1;
+          padding-top: 1px;
+        }
 
          .flavor-container .recommended {
-           flex: 0 0 auto;
-           font-style: italic;
-           color: rgb(210, 255, 9);
-           font-size: 0.8em;
-           margin-left: 10px;
-           margin-right: 10px;
-           border: 1px solid #90EE90;
-           border-radius: 10px;
-           padding: 3px;
-           padding-right: 10px;
-           padding-left: 10px;
-           background-color: #070707;
-      }
+          font-style: italic;
+          color: rgb(210, 255, 9);
+          font-size: 0.8em;
+        }
 
+        .recommended {
+          width: 35px; /* set the width and height to fit your image */
+          height: 20px;
+          text-indent: -9999px; /* hide the text */
+        }
+        
+
+        .recommended-container {
+          margin-right: 10px;
+        }
 
         .heat-level-container {
           float: right;
@@ -143,12 +156,15 @@
 
         /* Style for Heat Level */
         .pepper-image {
-            height: 100%;
-            margin-right: 10px;
-          
-          
-          
+          box-sizing: border-box;
+          width: 150px;
+          height: 30px;
+          margin-left: auto;
+          margin-top: -3.5px; /* add negative margin to offset the padding */
+
         }
+
+        
        /* Style for Wing Cost @ Bottom of Container */
         #wing-cost {
           position: relative;
