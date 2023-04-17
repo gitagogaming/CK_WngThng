@@ -20,10 +20,7 @@
                 padding: 0;
               }
         
-
-    
-
-    
+          /* The Wing Flavor Finder Container */
           #content {
             max-width: 900px;
             margin: 0 auto;
@@ -33,18 +30,21 @@
             border-radius: 10px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
           }
-    
+          
+          /* Basic styling for the Labels */
           label {
             font-size: 1.2rem;
             font-weight: bold;
           }
     
+          /* Style for the dropdown menu */
           select {
             width: 175px;
             height: 25px;
             margin-bottom: 10px;
           }
-    
+          
+          /* Style for the input box */
           input[type="text"] {
             width: 150px;
             height: 25px;
@@ -54,7 +54,8 @@
             border: none;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
           }
-    
+
+          /* Style for Wing-Names Content */
           #wing-names {
             background-color: #f9f9f9;
             padding: 20px;
@@ -62,7 +63,6 @@
             max-width: 900px;
             max-height: 600px;
             margin: 0 auto;
-            padding: 20px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             overflow: auto; /* add overflow property */
             font-family: 'Open Sans', sans-serif;
@@ -76,12 +76,12 @@
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
             
           }
-    
+
           #wing-names > div:hover {
             background-color: #e6e6e6;
             border: 1px solid #a6a8a4;
-
           }
+
           #tags-dropdown, #search-box {
             height: 30px;
             width: 250px;
@@ -94,8 +94,7 @@
             background-color: #ffffff;
           }
 
-
-
+          /* Random Flavor Button */
           #random-flavor {
             height: 30px;
             font-size: 16px;
@@ -109,8 +108,8 @@
             cursor: pointer;
           }
 
-        /* Style for recommended text */
 
+        /* Style for recommended flavor text */
          .flavor-container {
            display: flex;
            flex-direction: row;
@@ -136,15 +135,21 @@
            background-color: #070707;
       }
 
+
+        .heat-level-container {
+          float: right;
+          width: 300px;
+        }
+
+        /* Style for Heat Level */
         .pepper-image {
-          padding-right: 254px;
             height: 100%;
             margin-right: 10px;
           
           
           
         }
-      
+       /* Style for Wing Cost @ Bottom of Container */
         #wing-cost {
           position: relative;
           background-color: #ffdd57;
@@ -180,6 +185,7 @@
       <br />
       <br />
       <div id="wing-names"></div>
+      
       <div id="wing-cost">
         <p>6 Wings: $7.00 | 12 Wings: $14.00</p>
         <p>* Flavor will have extra cost associated</p>
