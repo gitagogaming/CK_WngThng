@@ -1,4 +1,5 @@
 var flavors = [];
+var flavorsLoaded = false;
 var headers = [];
 
 // make function to load a random flavor from the list of flavors
@@ -14,6 +15,10 @@ function randomFlavor() {
 
 
 function loadFlavors() {
+    if (flavorsLoaded) {
+      showFlavors();
+      return; // skip loading flavors if already loaded
+    } 
     // Loading TSV from google sheets because when using CSV the commas in names or descriptions were causing issues
     fetch('flavors.tsv')
       .then(response => response.text())
@@ -28,20 +33,12 @@ function loadFlavors() {
             flavor["Description"] = values[j].trim();
           }
           
-       //  // Adding the category to the flavor object
-       //  for (var j = 2; j < headers.length; j++) {
-       //    var category = headers[j];
-       //    if (values[j].trim().toLowerCase() === "true") {
-       //      flavor["Category"] = category;
-       //      break;
-       //    }
-       //  }
-          // adding the flavor to the flavors array
           flavors.push(flavor);
         }
-       // console.log(flavors);
         generateTags();
         showFlavors();
+        flavorsLoaded = true;
+      
       });
 }
   
@@ -84,64 +81,45 @@ function showFlavors() {
         var description = flavors[i]["Description"];
         var SpiceLevel = flavors[i]["Spice Level"];
         var additionalCost = flavors[i]["Additional Cost"];
-
-
-              // Add * next to wingNumber if additionalPrice is true
-
+        
+        // Adding SpiceLevel Image
         switch(SpiceLevel) {
           case "0":  // Plain / Sweet / ETC
-            heatScale = "";
+            heatScale = "<img src='images/heatlevels/level0.png' alt='Level0' class='pepper-image'>";
             break;
           case "1":  // Mild
-            heatScale = "<img src='images/heatlevels/level1.png' alt='Level1' class='pepper-image' width='300' height='50'>";
+            heatScale = "<img src='images/heatlevels/level1.png' alt='Level1' class='pepper-image'>";
             break;
           case "2": // Hot
-            heatScale = "<img src='images/heatlevels/level2.png' alt='Level2' class='pepper-image' width='120' height='20'>";
+            heatScale = "<img src='images/heatlevels/level2.png' alt='Level2' class='pepper-image'>";
             break;
           case "3": // Death
-            heatScale = "<img src='images/heatlevels/level3.png' alt='Level3' class='pepper-image' width='120' height='20'>";
+            heatScale = "<img src='images/heatlevels/level3.png' alt='Level3' class='pepper-image'> ";
             break;
           case "4": // Suicide
-            heatScale = "<img src='images/heatlevels/level4.png' alt='Level4' class='pepper-image' width='120' height='20'>";
+            heatScale = "<img src='images/heatlevels/level4.png' alt='Level4' class='pepper-image'> ";
             break;
           case "5": // Nuclear
-            heatScale = "<img src='images/heatlevels/level5.png' alt='Level5' class='pepper-image' width='120' height='20'>";
+            heatScale = "<img src='images/heatlevels/level5.png' alt='Level5' class='pepper-image'> ";
             break;
           default:
             console.log("Unexpected category: " + SpiceLevel + " " + wingName);
-        }
-        
+        }  
 
       // Add asterisk before wingNumber if additionalPrice is true
       var asterisk = additionalCost === "TRUE" ? "* " : "";
 
-      // Add pepper images based on selected tag
-    //  var pepperImages = "";
-    //  for (var j = 0; j < numPeppers; j++) {
-    //    pepperImages += "<img src='pepper.png' alt='Pepper' class='pepper-image'>";
-    //  }
-
       if (flavors[i]["CK's Choice"] === "TRUE" && selectedTag !== "CK's Choice") {
         // Add CK's Choice flavors to separate array
-        cksChoices.push("<div class='flavor-container' title='" + description + "'><div class='flavor'>" + asterisk + wingNumber + ": " + wingName + "    " + heatScale + "</div><div class='recommended'>CK's Choice!</div></div>");
+        cksChoices.push("<div class='flavor-container' title='" + description + "'><div class='flavor'><div class='flavor-text'>" + asterisk + wingNumber + ": " + wingName + " " + "</div><div class='recommended-container'><img src='images/cksChoice.png' alt='CKs Choice' class='recommended'></div>"+ heatScale+"</div></div>");
       } else {
         // Add other flavors to main list
         wingNames += "<div class='flavor-container' title='" + description + "'><div class='flavor'>" + asterisk + wingNumber + ": " + wingName +  "    " + heatScale + "</div></div>";
       }
     }
   }
-   
-   // Randomly select and add 3 CK's Choice flavors to the beginning of the main list
-    var cksLen = cksChoices.length;
-    for (var j = 0; j < 3 && cksLen > 0; j++) {
-        var randomIndex = Math.floor(Math.random() * cksLen);
-        wingNames = cksChoices.splice(randomIndex, 1) + wingNames;
-        cksLen--;
-    }
-    document.getElementById("wing-names").innerHTML = wingNames;
- }
+//console.log(wingNames)
 
-   // Check if ckChoices and if so shuffle 
    // Shuffle the CK's Choice array and select 3 random flavors
    cksChoices = shuffleArray(cksChoices);
    var recommendedFlavors = cksChoices.slice(0, 3);
@@ -151,8 +129,10 @@ function showFlavors() {
 
    // Add the remaining flavors to the main list
    document.getElementById("wing-names").innerHTML = wingNames;
- 
+  // console.log("Total number of wingNames: " + wingNames.length);
+  // console.log("Length of flavors: " + flavors.length);
 
+}
 
 
  // Function to shuffle an array using the Fisher-Yates algorithm
